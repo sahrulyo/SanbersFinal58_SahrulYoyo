@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+        .product-card div {
+            padding: 15px;
+        }
+        .product-card h2 {
+            margin: 0 0 10px;
+            font-size: 1.5em;
+        }
+        .product-card p {
+            margin: 5px 0;
+        }
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .pagination button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Cards</h1>
+        <div id="product-container"></div>
+        <div class="pagination">
+            <button id="prev-page" onclick="loadPage(currentPage - 1)" class="disabled">Previous</button>
+            <button id="next-page" onclick="loadPage(currentPage + 1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const limit = 10;
+
+        async function fetchProducts(page = 1) {
+            try {
+                const response = await fetch(`http://localhost:3000/api/products?page=${page}&limit=${limit}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                console.log('Fetched data:', data);
+
+                if (data && Array.isArray(data.data)) {
+                    displayProducts(data.data);
+                    updatePagination(data.page, data.totalPages);
+                } else {
+                    console.error('Unexpected data format:', data);
+                    document.getElementById('product-container').innerHTML = '<p class="error">Unexpected data format received from server.</p>';
+                }
+            } catch (error) {
+                console.error('Failed to fetch products:', error);
+                document.getElementById('product-container').innerHTML = '<p class="error">Failed to fetch products. Please try again later.</p>';
+            }
+        }
+
+        function displayProducts(products) {
+            const container = document.getElementById('product-container');
+            container.innerHTML = ''; // Clear the container
+
+            if (products.length === 0) {
+                container.innerHTML = '<p>No products available</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                // Log each product for debugging
+                console.log('Product:', product);
+
+                // Check for missing properties
+                if (product && product.name && product.description && product.price !== undefined && Array.isArray(product.images)) {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+
+                    // Fallback for missing or empty images
+                    const imageSrc = product.images.length > 0 ? product.images[0] : 'default-image.jpg'; // Replace with the path to your default image
+
+                    // Handle missing categoryId gracefully
+                    const categoryInfo = product.categoryId ? `Category ID: ${product.categoryId}` : 'Category information not available';
+
+                    card.innerHTML = `
+                        <img src="${imageSrc}" alt="${product.name}" class="${product.images.length === 0 ? 'fallback' : ''}" />
+                        <div>
+                            <h2>${product.name || 'No name available'}</h2>
+                            <p>${product.description || 'No description available'}</p>
+                            <p class="price">$${(product.price / 100).toFixed(2) || 'Price not available'}</p>
+                            <p class="quantity">Quantity: ${product.qty || 'N/A'}</p>
+                            <p class="category">${categoryInfo}</p>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                } else {
+                    console.error('Product is missing some properties:', product);
+                }
+            });
+        }
+
+        function updatePagination(current, totalPages) {
+            const prevButton = document.getElementById('prev-page');
+            const nextButton = document.getElementById('next-page');
+
+            if (current <= 1) {
+                prevButton.classList.add('disabled');
+            } else {
+                prevButton.classList.remove('disabled');
+            }
+
+            if (current >= totalPages) {
+                nextButton.classList.add('disabled');
+            } else {
+                nextButton.classList.remove('disabled');
+            }
+        }
+
+        function loadPage(page) {
+            if (page < 1) return;
+            fetchProducts(page);
+            currentPage = page;
+        }
+
+        // Initial fetch
+        fetchProducts(currentPage);
+    </script>
+</body>
+</html>
