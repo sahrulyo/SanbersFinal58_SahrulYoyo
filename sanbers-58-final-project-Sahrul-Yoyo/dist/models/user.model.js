@@ -58,7 +58,7 @@ UserSchema.pre("save", function (next) {
 UserSchema.post("save", function (doc, next) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = doc;
-        //send email
+        //send email -------------------------------------------------->
         console.log("Send Email to", user.email);
         const content = yield mail_1.default.render('register-success.ejs', {
             username: user.username,

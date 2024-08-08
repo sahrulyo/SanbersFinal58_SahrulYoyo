@@ -12,10 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserOrders = exports.createOrder = void 0;
+exports.getUserOrders = exports.createOrder = exports.getOrderStatuses = void 0;
 const order_model_1 = require("../models/order.model");
 const products_model_1 = __importDefault(require("../models/products.model"));
-// Buat Order Baru
+const user_model_1 = __importDefault(require("../models/user.model"));
+const mail_1 = __importDefault(require("../utils/mail/mail"));
+const notification_controller_1 = require("./notification.controller");
+// status order ------------------------------------------------------------------------>
+const orderStatuses = [
+    "pending",
+    "confirmed",
+    "shipped",
+    "delivered",
+    "cancelled",
+    "completed"
+];
+const getOrderStatuses = (req, res) => {
+    res.status(200).json(orderStatuses);
+};
+exports.getOrderStatuses = getOrderStatuses;
+// Buat Order Baru --------------------------------------------------------------------->
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { orderItems } = req.body;
@@ -47,11 +63,55 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             status: order_model_1.OrderStatus.Pending,
         });
         yield newOrder.save();
-        // Kirim invoice email
-        // const user = await UserModel.findById(userId);
-        // if (user) {
-        //     await mail.sendEmail(user.email, newOrder);
-        // }
+        // Ambil informasi pengguna untuk mengirim email konfirmasi ------------------------------->
+        //         const user = await UserModel.findById(userId);
+        //         if (user) {
+        //             const content = await mail.render('invoices.ejs', {
+        //                 username: user.username,
+        //                 orderItems,
+        //                 grandTotal,
+        //                 contactEmail: 'yoyo.ptr@gmail.com', 
+        //                 companyName: 'Kreatif Pixel Studio', 
+        //                 year: new Date().getFullYear(),
+        //             });
+        //             await mail.sendEmail({
+        //                 to: user.email,
+        //                 subject: 'Order Success',
+        //                 content,
+        //             });
+        //             console.log("Order confirmation email sent to", user.email);
+        //         }
+        //         res.status(201).json({ message: 'Order created successfully', data: newOrder });
+        //     } catch (error: unknown) {
+        //         if (error instanceof Error) {
+        //             res.status(500).json({ message: 'Error creating order', data: error.message });
+        //         } else {
+        //             res.status(500).json({ message: 'Unknown error' });
+        //         }
+        //     }
+        // };
+        // Mengirim Notifikasi -------------------------------------------------------------------->
+        const user = yield user_model_1.default.findById(userId);
+        if (user) {
+            // Buat notifikasi untuk user
+            yield (0, notification_controller_1.createNotification)(userId, 'Your order has been placed successfully and is pending.', 'order-status');
+            // Render email content
+            const content = yield mail_1.default.render('invoices.ejs', {
+                username: user.username,
+                orderItems,
+                grandTotal,
+                contactEmail: 'yoyo.ptr@gmail.com',
+                companyName: 'Kreatif Pixel Studio',
+                year: new Date().getFullYear(),
+            });
+            // Kirim email konfirmasi
+            yield mail_1.default.sendEmail({
+                to: user.email,
+                subject: 'Order Success',
+                content,
+            });
+            console.log("Order confirmation email sent to", user.email);
+        }
         res.status(201).json({ message: 'Order created successfully', data: newOrder });
     }
     catch (error) {
@@ -64,7 +124,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.createOrder = createOrder;
-// Menampilkan Riwayat Order berdasarkan Pengguna (User)
+// Menampilkan Riwayat Order berdasarkan Pengguna (User) -------------------------------->
 const getUserOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _b;
     const userId = (_b = req.user) === null || _b === void 0 ? void 0 : _b.id;
