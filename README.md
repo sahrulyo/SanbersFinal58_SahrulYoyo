@@ -2,7 +2,7 @@
 A final project Sanbercode
 
 
-## Endpoints
+## Endpoints e-commerce
 
 ### Products
 
