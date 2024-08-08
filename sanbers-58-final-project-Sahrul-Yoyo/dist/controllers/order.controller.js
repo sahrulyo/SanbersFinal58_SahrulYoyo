@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserOrders = exports.createOrder = void 0;
 const order_model_1 = require("../models/order.model");
 const products_model_1 = __importDefault(require("../models/products.model"));
-const mail_1 = require("../utils/mail/mail");
-const user_model_1 = __importDefault(require("../models/user.model"));
 // Buat Order Baru
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -50,10 +48,10 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
         yield newOrder.save();
         // Kirim invoice email
-        const user = yield user_model_1.default.findById(userId);
-        if (user) {
-            yield (0, mail_1.sendOrderInvoiceEmail)(user.email, newOrder);
-        }
+        // const user = await UserModel.findById(userId);
+        // if (user) {
+        //     await mail.sendEmail(user.email, newOrder);
+        // }
         res.status(201).json({ message: 'Order created successfully', data: newOrder });
     }
     catch (error) {

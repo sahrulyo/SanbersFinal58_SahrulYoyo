@@ -6,7 +6,16 @@ import uploadController from "./controllers/upload.controller";
 import productsController from "./controllers/products.controller";
 import authMiddleware from "./middlewares/auth.middleware";
 import authorizeRoles from "./middlewares/acl.midllewares";
-import { createOrder, getUserOrders } from "./controllers/order.controller";
+import { createOrder, getOrderStatuses, getUserOrders } from "./controllers/order.controller";
+import { getUserNotifications, markNotificationAsRead } from './controllers/notification.controller';
+import {
+  addItemToCart,
+  removeItemFromCart,
+  updateCartItemQuantity,
+  getCart,
+  clearCart
+} from './controllers/cart.controller';
+
 
 const router = express.Router();
 
@@ -38,20 +47,34 @@ router.post(
     authController.registerAdmin
   );
   
-// Get current user details
+// mendapatkan detail user (logged) saat ini
 router.get("/auth/me", [authMiddleware, authorizeRoles(["admin", "user"])], authController.me);
 
 // Update user profile
 router.put("/auth/profile", authMiddleware, authController.profile);
 
-// Get all users (only accessible by admin)
+// Mendapatkan semua pengguna(hanya diakses oleh admin)
 router.get("/auth/users", authMiddleware, authorizeRoles(["admin"]), authController.getAll)
 
+// untuk admin pertama kali registrasi/rahasia
 router.post("/auth/register-admin", authController.registerAdmin);
 
 router.post('/order', authMiddleware, createOrder);
+
 router.get('/order/history', authMiddleware, getUserOrders);
 
+router.get('/order/statuses', getOrderStatuses);
 
+// Mengambil Notifikasi Berdasarkan User ID
+router.get('/notifications/:userId', getUserNotifications);
+
+// Menandai Notifikasi sebagai Dibaca
+router.put('/notifications/:notificationId/read', markNotificationAsRead);
+
+router.post('/cart/add', authMiddleware, addItemToCart);
+router.delete('/cart/:productId', authMiddleware, removeItemFromCart);
+router.put('/cart/update', authMiddleware, updateCartItemQuantity);
+router.get('/cart', authMiddleware, getCart);
+router.delete('/cart/clear', authMiddleware, clearCart);
 
 export default router;

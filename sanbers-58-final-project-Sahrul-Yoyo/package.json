@@ -5,9 +5,11 @@
   "scripts": {
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "dev": "ts-node-dev -r tsconfig-paths/register src/server.ts"
+    "build": "tsc && cp -R src/utils/mail/templates dist/utils/mail/",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/server.ts",
+  "copy-templates": "copyfiles -u 1 src/utils/mail/templates/*.ejs dist/utils/mail/templates"
   },
+
   "author": "",
   "license": "ISC",
   "description": "",
@@ -36,6 +38,7 @@
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.6",
+    "copyfiles": "^2.4.1",
     "tsconfig-paths": "^4.2.0"
   }
 }

@@ -40,7 +40,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const user_model_1 = __importDefault(require("../models/user.model"));
 const encryption_1 = require("../utils/encryption");
 const env_1 = require("../utils/env");
-const mail_1 = require("../utils/mail/mail");
+//import { sendRegisterSuccessEmail } from "../utils/mail/mail";
 //validate --------------------------------------------->
 const validateRegisterSchema = Yup.object().shape({
     fullName: Yup.string().required(),
@@ -220,7 +220,7 @@ exports.default = {
                     role,
                 });
                 // Kirim email registrasi sukses -------------->
-                yield (0, mail_1.sendRegisterSuccessEmail)(email, fullName);
+                // await sendRegisterSuccessEmail(email, fullName);
                 res.json({
                     message: "User registered successfully",
                     data: user,

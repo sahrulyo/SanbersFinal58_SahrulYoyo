@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const env_1 = require("../utils/env");
 const mongoose_1 = __importDefault(require("mongoose"));
 const encryption_1 = require("../utils/encryption");
+const mail_1 = __importDefault(require("../utils/mail/mail"));
 const Schema = mongoose_1.default.Schema;
 const UserSchema = new Schema({
     fullName: {
@@ -51,6 +52,22 @@ UserSchema.pre("save", function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = this;
         user.password = (0, encryption_1.encrypt)(env_1.SECRET, user.password);
+        next();
+    });
+});
+UserSchema.post("save", function (doc, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const user = doc;
+        //send email
+        console.log("Send Email to", user.email);
+        const content = yield mail_1.default.render('register-success.ejs', {
+            username: user.username,
+        });
+        yield mail_1.default.sendEmail({
+            to: user.email,
+            subject: 'Registration Success',
+            content,
+        });
         next();
     });
 });

@@ -6,7 +6,7 @@ import UserModel from "../models/user.model";
 import { decrypt, encrypt } from "../utils/encryption";
 import { SECRET } from "../utils/env";
 import { IReqUser } from "../utils/interfaces";
-import { sendRegisterSuccessEmail } from "../utils/mail/mail";
+//import { sendRegisterSuccessEmail } from "../utils/mail/mail";
 
 
 //validate --------------------------------------------->
@@ -215,7 +215,7 @@ export default {
           role,
         });
         // Kirim email registrasi sukses -------------->
-        await sendRegisterSuccessEmail(email, fullName);
+       // await sendRegisterSuccessEmail(email, fullName);
 
         res.json({
           message: "User registered successfully",

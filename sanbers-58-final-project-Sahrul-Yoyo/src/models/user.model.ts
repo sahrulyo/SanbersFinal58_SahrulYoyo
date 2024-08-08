@@ -1,6 +1,7 @@
 import { SECRET } from '../utils/env'
 import mongoose from "mongoose";
 import { encrypt } from "../utils/encryption";
+import mail from '../utils/mail/mail';
 
 
 const Schema = mongoose.Schema;
@@ -43,6 +44,24 @@ const UserSchema = new Schema(
 UserSchema.pre("save", async function (next) {
   const user = this;
   user.password = encrypt(SECRET, user.password);
+  next();
+});
+
+UserSchema.post("save", async function (doc, next){
+  const user = doc;
+
+  //send email -------------------------------------------------->
+  console.log("Send Email to", user.email);
+  const content = await mail.render('register-success.ejs', {
+    username: user.username,
+
+  });
+  await mail.sendEmail({
+    to: user.email,
+    subject: 'Registration Success',
+    content,
+  });
+
   next();
 });
 

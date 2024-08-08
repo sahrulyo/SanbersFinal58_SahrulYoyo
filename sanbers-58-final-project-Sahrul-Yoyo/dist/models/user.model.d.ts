@@ -32,7 +32,7 @@ declare const UserModel: mongoose.Model<{
     username: string;
     email: string;
     password: string;
-    role: "admin" | "user";
+    role: "user" | "admin";
     profilePicture: string;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     createdAt: NativeDate;
@@ -42,7 +42,7 @@ declare const UserModel: mongoose.Model<{
     username: string;
     email: string;
     password: string;
-    role: "admin" | "user";
+    role: "user" | "admin";
     profilePicture: string;
 }> & {
     createdAt: NativeDate;
@@ -52,7 +52,7 @@ declare const UserModel: mongoose.Model<{
     username: string;
     email: string;
     password: string;
-    role: "admin" | "user";
+    role: "user" | "admin";
     profilePicture: string;
 } & {
     _id: mongoose.Types.ObjectId;
@@ -66,7 +66,7 @@ declare const UserModel: mongoose.Model<{
     username: string;
     email: string;
     password: string;
-    role: "admin" | "user";
+    role: "user" | "admin";
     profilePicture: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
@@ -76,7 +76,7 @@ declare const UserModel: mongoose.Model<{
     username: string;
     email: string;
     password: string;
-    role: "admin" | "user";
+    role: "user" | "admin";
     profilePicture: string;
 }>> & mongoose.FlatRecord<{
     createdAt: NativeDate;
@@ -86,7 +86,7 @@ declare const UserModel: mongoose.Model<{
     username: string;
     email: string;
     password: string;
-    role: "admin" | "user";
+    role: "user" | "admin";
     profilePicture: string;
 }> & {
     _id: mongoose.Types.ObjectId;

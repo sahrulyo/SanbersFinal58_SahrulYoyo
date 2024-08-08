@@ -12,59 +12,38 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendRegisterSuccessEmail = exports.sendOrderInvoiceEmail = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const ejs_1 = __importDefault(require("ejs"));
 const path_1 = __importDefault(require("path"));
-const env_1 = require("../env");
+// const __dirname = path.resolve();
 const transporter = nodemailer_1.default.createTransport({
+    service: "Zoho",
     host: 'smtp.zoho.com',
     port: 465,
     secure: true,
     auth: {
-        user: env_1.ZOHO_MAIL_USER,
-        pass: env_1.ZOHO_MAIL_PASS,
+        user: "yoyo.ptr@zohomail.com",
+        pass: "Ulyasar10389&",
     },
+    requireTLS: true,
 });
-const sendEmail = (to, subject, text, html) => __awaiter(void 0, void 0, void 0, function* () {
-    const mailOptions = {
-        from: env_1.ZOHO_MAIL_USER,
+const sendEmail = (_a) => __awaiter(void 0, [_a], void 0, function* ({ to, subject, content, }) {
+    const result = yield transporter.sendMail({
+        from: "yoyo.ptr@zohomail.com",
         to,
         subject,
-        text,
-        html,
-    };
-    try {
-        return yield transporter.sendMail(mailOptions);
-    }
-    catch (error) {
-        console.error('Error sending email:', error);
-        throw error;
-    }
+        html: content,
+    });
+    console.log("Send Email to", to);
+    return result;
 });
-const sendOrderInvoiceEmail = (to, order) => __awaiter(void 0, void 0, void 0, function* () {
-    const templatePath = path_1.default.resolve(__dirname, 'templates', 'invoice.ejs');
-    try {
-        const html = yield ejs_1.default.renderFile(templatePath, { order });
-        yield sendEmail(to, 'Your Order Invoice', 'Thank you for your order!', html);
-    }
-    catch (error) {
-        console.error('Error sending order invoice email:', error);
-        throw error;
-    }
+const render = (template, data) => __awaiter(void 0, void 0, void 0, function* () {
+    const content = yield ejs_1.default.renderFile(path_1.default.join(__dirname, `templates/${template}`), data // data object harus diberikan ke fungsi renderFile
+    );
+    return content;
 });
-exports.sendOrderInvoiceEmail = sendOrderInvoiceEmail;
-const sendRegisterSuccessEmail = (to, name) => __awaiter(void 0, void 0, void 0, function* () {
-    const templatePath = path_1.default.resolve(__dirname, 'templates', 'register-success.ejs');
-    try {
-        const html = yield ejs_1.default.renderFile(templatePath, { name });
-        yield sendEmail(to, 'Registration Successful', 'Welcome to our service!', html);
-    }
-    catch (error) {
-        console.error('Error sending registration success email:', error);
-        throw error;
-    }
-});
-exports.sendRegisterSuccessEmail = sendRegisterSuccessEmail;
-exports.default = sendEmail;
+exports.default = {
+    sendEmail,
+    render,
+};
 //# sourceMappingURL=mail.js.map
