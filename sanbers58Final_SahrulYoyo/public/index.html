@@ -4,171 +4,996 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Cards</title>
+    <title>API Documentation - E-commerce_Sahrul Yoyo Sanbers Batch 58</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 20px;
         }
-        .product-card {
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
             background: #fff;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
         }
-        .product-card img {
-            width: 100%;
-            height: auto;
+
+        h1, h2, h3 {
+            color: #4CAF50;
         }
-        .product-card div {
-            padding: 15px;
+
+        h1 {
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
         }
-        .product-card h2 {
-            margin: 0 0 10px;
-            font-size: 1.5em;
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-left: 5px solid #4CAF50;
+            overflow-x: auto;
         }
-        .product-card p {
-            margin: 5px 0;
-        }
-        .price {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .pagination {
-            text-align: center;
+
+        .endpoint {
             margin: 20px 0;
         }
-        .pagination button {
-            padding: 10px 20px;
-            margin: 0 5px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
+
+        .method {
+            font-weight: bold;
             color: #fff;
-            cursor: pointer;
+            background-color: #4CAF50;
+            padding: 3px 7px;
+            border-radius: 5px;
+            display: inline-block;
         }
-        .pagination button.disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
+
+        .url {
+            font-family: 'Courier New', Courier, monospace;
+            color: #555;
         }
-        .error {
-            color: red;
+
+        .description, .parameters, .response, .example {
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        code {
+            background-color: #f9f9f9;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Product Cards</h1>
-        <div id="product-container"></div>
-        <div class="pagination">
-            <button id="prev-page" onclick="loadPage(currentPage - 1)" class="disabled">Previous</button>
-            <button id="next-page" onclick="loadPage(currentPage + 1)">Next</button>
+        <h1>API Documentation</h1>
+
+        <!-- Products Section -->
+        <div class="endpoint">
+            <h2>Products</h2>
+
+            <h3>Get All Products</h3>
+            <p class="method">GET</p>
+            <p class="url">/products</p>
+            <p class="description">Retrieve a list of all products.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>[
+  {
+    "id": "product_id",
+    "name": "Product Name",
+    "price": 100,
+    "category": "Category Name",
+    "qty": 50
+  },
+  ...
+]</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /products</code></pre>
+            </div>
+
+            <h3>Create Product</h3>
+            <p class="method">POST</p>
+            <p class="url">/products</p>
+            <p class="description">Create a new product.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>Name of the product</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>price</td>
+                            <td>number</td>
+                            <td>Price of the product</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>Category of the product</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>qty</td>
+                            <td>number</td>
+                            <td>Quantity of the product</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Product created successfully",
+  "data": {
+    "id": "product_id",
+    "name": "Product Name",
+    "price": 100,
+    "category": "Category Name",
+    "qty": 50
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>POST /products
+{
+  "name": "Product Name",
+  "price": 100,
+  "category": "Category Name",
+  "qty": 50
+}</code></pre>
+            </div>
+
+            <h3>Get Product by ID</h3>
+            <p class="method">GET</p>
+            <p class="url">/products/:id</p>
+            <p class="description">Retrieve a single product by its ID.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "id": "product_id",
+  "name": "Product Name",
+  "price": 100,
+  "category": "Category Name",
+  "qty": 50
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /products/12345</code></pre>
+            </div>
+
+            <h3>Update Product</h3>
+            <p class="method">PUT</p>
+            <p class="url">/products/:id</p>
+            <p class="description">Update an existing product by its ID.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>Name of the product</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>price</td>
+                            <td>number</td>
+                            <td>Price of the product</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>category</td>
+                            <td>string</td>
+                            <td>Category of the product</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>qty</td>
+                            <td>number</td>
+                            <td>Quantity of the product</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Product updated successfully",
+  "data": {
+    "id": "product_id",
+    "name": "Product Name",
+    "price": 120,
+    "category": "New Category Name",
+    "qty": 40
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>PUT /products/12345
+{
+  "name": "Updated Product Name",
+  "price": 120,
+  "category": "New Category Name",
+  "qty": 40
+}</code></pre>
+            </div>
+
+            <h3>Delete Product</h3>
+            <p class="method">DELETE</p>
+            <p class="url">/products/:id</p>
+            <p class="description">Delete a product by its ID.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Product deleted successfully"
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>DELETE /products/12345</code></pre>
+            </div>
+        </div>
+
+        <!-- Categories Section -->
+        <div class="endpoint">
+            <h2>Categories</h2>
+
+            <h3>Get All Categories</h3>
+            <p class="method">GET</p>
+            <p class="url">/categories</p>
+            <p class="description">Retrieve a list of all categories.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>[
+  {
+    "id": "category_id",
+    "name": "Category Name"
+  },
+  ...
+]</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /categories</code></pre>
+            </div>
+
+            <h3>Create Category</h3>
+            <p class="method">POST</p>
+            <p class="url">/categories</p>
+            <p class="description">Create a new category.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>Name of the category</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Category created successfully",
+  "data": {
+    "id": "category_id",
+    "name": "Category Name"
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>POST /categories
+{
+  "name": "Category Name"
+}</code></pre>
+            </div>
+
+            <h3>Get Category by ID</h3>
+            <p class="method">GET</p>
+            <p class="url">/categories/:id</p>
+            <p class="description">Retrieve a single category by its ID.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "id": "category_id",
+  "name": "Category Name"
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /categories/12345</code></pre>
+            </div>
+
+            <h3>Update Category</h3>
+            <p class="method">PUT</p>
+            <p class="url">/categories/:id</p>
+            <p class="description">Update an existing category by its ID.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>string</td>
+                            <td>Name of the category</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Category updated successfully",
+  "data": {
+    "id": "category_id",
+    "name": "Updated Category Name"
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>PUT /categories/12345
+{
+  "name": "Updated Category Name"
+}</code></pre>
+            </div>
+
+            <h3>Delete Category</h3>
+            <p class="method">DELETE</p>
+            <p class="url">/categories/:id</p>
+            <p class="description">Delete a category by its ID.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Category deleted successfully"
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>DELETE /categories/12345</code></pre>
+            </div>
+        </div>
+
+        <!-- Authentication Section -->
+        <div class="endpoint">
+            <h2>Authentication</h2>
+
+            <h3>Login</h3>
+            <p class="method">POST</p>
+            <p class="url">/auth/login</p>
+            <p class="description">Authenticate a user and retrieve a JWT token.</p>
+            
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>email</td>
+                            <td>string</td>
+                            <td>User's email</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>string</td>
+                            <td>User's password</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "token": "jwt_token",
+  "user": {
+    "id": "user_id",
+    "email": "user@example.com",
+    "role": "user"
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>POST /auth/login
+{
+  "email": "user@example.com",
+  "password": "yourpassword"
+}</code></pre>
+            </div>
+
+            <h3>Register</h3>
+            <p class="method">POST</p>
+            <p class="url">/auth/register</p>
+            <p class="description">Register a new user.</p>
+            
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>email</td>
+                            <td>string</td>
+                            <td>User's email</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>string</td>
+                            <td>User's password</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "User registered successfully",
+  "user": {
+    "id": "user_id",
+    "email": "user@example.com",
+    "role": "user"
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>POST /auth/register
+{
+  "email": "user@example.com",
+  "password": "yourpassword"
+}</code></pre>
+            </div>
+
+            <h3>Get Current User</h3>
+            <p class="method">GET</p>
+            <p class="url">/auth/me</p>
+            <p class="description">Retrieve details of the currently authenticated user.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "id": "user_id",
+  "email": "user@example.com",
+  "role": "user"
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /auth/me</code></pre>
+            </div>
+
+            <h3>Update Profile</h3>
+            <p class="method">PUT</p>
+            <p class="url">/auth/profile</p>
+            <p class="description">Update the profile of the currently authenticated user.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>email</td>
+                            <td>string</td>
+                            <td>User's email</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td>string</td>
+                            <td>New password</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Profile updated successfully",
+  "user": {
+    "id": "user_id",
+    "email": "updated@example.com",
+    "role": "user"
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>PUT /auth/profile
+{
+  "email": "updated@example.com",
+  "password": "newpassword"
+}</code></pre>
+            </div>
+
+            <h3>Get All Users (Admin Only)</h3>
+            <p class="method">GET</p>
+            <p class="url">/auth/users</p>
+            <p class="description">Retrieve a list of all users. (Admin only)</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>[
+  {
+    "id": "user_id",
+    "email": "user@example.com",
+    "role": "user"
+  },
+  ...
+]</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /auth/users</code></pre>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="endpoint">
+            <h2>Orders</h2>
+
+            <h3>Create Order</h3>
+            <p class="method">POST</p>
+            <p class="url">/order</p>
+            <p class="description">Create a new order.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>items</td>
+                            <td>array</td>
+                            <td>Array of product items</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>total</td>
+                            <td>number</td>
+                            <td>Total amount for the order</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Order created successfully",
+  "order": {
+    "id": "order_id",
+    "items": [
+      {
+        "product_id": "product_id",
+        "quantity": 2
+      }
+    ],
+    "total": 200
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>POST /order
+{
+  "items": [
+    {
+      "product_id": "product_id",
+      "quantity": 2
+    }
+  ],
+  "total": 200
+}</code></pre>
+            </div>
+
+            <h3>Get Order History</h3>
+            <p class="method">GET</p>
+            <p class="url">/order/history</p>
+            <p class="description">Retrieve the order history for the authenticated user.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>[
+  {
+    "id": "order_id",
+    "items": [
+      {
+        "product_id": "product_id",
+        "quantity": 2
+      }
+    ],
+    "total": 200
+  },
+  ...
+]</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /order/history</code></pre>
+            </div>
+
+            <h3>Get Order Statuses</h3>
+            <p class="method">GET</p>
+            <p class="url">/order/statuses</p>
+            <p class="description">Retrieve a list of possible order statuses.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>[
+  "Pending",
+  "Processing",
+  "Shipped",
+  "Delivered",
+  "Cancelled"
+]</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /order/statuses</code></pre>
+            </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="endpoint">
+            <h2>Notifications</h2>
+
+            <h3>Get User Notifications</h3>
+            <p class="method">GET</p>
+            <p class="url">/notifications/:userId</p>
+            <p class="description">Retrieve notifications for a user by their ID.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>[
+  {
+    "id": "notification_id",
+    "message": "You have a new message",
+    "read": false
+  },
+  ...
+]</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /notifications/12345</code></pre>
+            </div>
+
+            <h3>Mark Notification as Read</h3>
+            <p class="method">PUT</p>
+            <p class="url">/notifications/:notificationId/read</p>
+            <p class="description">Mark a notification as read by its ID.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Notification marked as read"
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>PUT /notifications/notification_id/read</code></pre>
+            </div>
+        </div>
+
+        <!-- Cart Section -->
+        <div class="endpoint">
+            <h2>Cart</h2>
+
+            <h3>Add Item to Cart</h3>
+            <p class="method">POST</p>
+            <p class="url">/cart/add</p>
+            <p class="description">Add an item to the cart.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>product_id</td>
+                            <td>string</td>
+                            <td>ID of the product to add</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>quantity</td>
+                            <td>number</td>
+                            <td>Quantity to add</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Item added to cart",
+  "cart": {
+    "items": [
+      {
+        "product_id": "product_id",
+        "quantity": 2
+      }
+    ],
+    "total": 200
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>POST /cart/add
+{
+  "product_id": "product_id",
+  "quantity": 2
+}</code></pre>
+            </div>
+
+            <h3>Remove Item from Cart</h3>
+            <p class="method">DELETE</p>
+            <p class="url">/cart/:productId</p>
+            <p class="description">Remove an item from the cart by product ID.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Item removed from cart",
+  "cart": {
+    "items": [],
+    "total": 0
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>DELETE /cart/product_id</code></pre>
+            </div>
+
+            <h3>Update Cart Item Quantity</h3>
+            <p class="method">PUT</p>
+            <p class="url">/cart/update</p>
+            <p class="description">Update the quantity of an item in the cart.</p>
+
+            <div class="parameters">
+                <h4>Parameters</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>product_id</td>
+                            <td>string</td>
+                            <td>ID of the product to update</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>quantity</td>
+                            <td>number</td>
+                            <td>New quantity</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "message": "Cart updated",
+  "cart": {
+    "items": [
+      {
+        "product_id": "product_id",
+        "quantity": 3
+      }
+    ],
+    "total": 300
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>PUT /cart/update
+{
+  "product_id": "product_id",
+  "quantity": 3
+}</code></pre>
+            </div>
+
+            <h3>Get Cart Items</h3>
+            <p class="method">GET</p>
+            <p class="url">/cart</p>
+            <p class="description">Retrieve the current items in the user's cart.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+  "cart": {
+    "items": [
+      {
+        "product_id": "product_id",
+        "quantity": 3
+      }
+    ],
+    "total": 300
+  }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>GET /cart</code></pre>
+            </div>
         </div>
     </div>
+</div>
 
-    <script>
-        let currentPage = 1;
-        const limit = 10;
-
-        async function fetchProducts(page = 1) {
-            try {
-                const response = await fetch(`http://localhost:3000/api/products?page=${page}&limit=${limit}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                console.log('Fetched data:', data);
-
-                if (data && Array.isArray(data.data)) {
-                    displayProducts(data.data);
-                    updatePagination(data.page, data.totalPages);
-                } else {
-                    console.error('Unexpected data format:', data);
-                    document.getElementById('product-container').innerHTML = '<p class="error">Unexpected data format received from server.</p>';
-                }
-            } catch (error) {
-                console.error('Failed to fetch products:', error);
-                document.getElementById('product-container').innerHTML = '<p class="error">Failed to fetch products. Please try again later.</p>';
-            }
-        }
-
-        function displayProducts(products) {
-            const container = document.getElementById('product-container');
-            container.innerHTML = ''; // Clear the container
-
-            if (products.length === 0) {
-                container.innerHTML = '<p>No products available</p>';
-                return;
-            }
-
-            products.forEach(product => {
-                // Log each product for debugging
-                console.log('Product:', product);
-
-                // Check for missing properties
-                if (product && product.name && product.description && product.price !== undefined && Array.isArray(product.images)) {
-                    const card = document.createElement('div');
-                    card.className = 'product-card';
-
-                    // Fallback for missing or empty images
-                    const imageSrc = product.images.length > 0 ? product.images[0] : 'default-image.jpg'; // Replace with the path to your default image
-
-                    // Handle missing categoryId gracefully
-                    const categoryInfo = product.categoryId ? `Category ID: ${product.categoryId}` : 'Category information not available';
-
-                    card.innerHTML = `
-                        <img src="${imageSrc}" alt="${product.name}" class="${product.images.length === 0 ? 'fallback' : ''}" />
-                        <div>
-                            <h2>${product.name || 'No name available'}</h2>
-                            <p>${product.description || 'No description available'}</p>
-                            <p class="price">$${(product.price / 100).toFixed(2) || 'Price not available'}</p>
-                            <p class="quantity">Quantity: ${product.qty || 'N/A'}</p>
-                            <p class="category">${categoryInfo}</p>
-                        </div>
-                    `;
-
-                    container.appendChild(card);
-                } else {
-                    console.error('Product is missing some properties:', product);
-                }
-            });
-        }
-
-        function updatePagination(current, totalPages) {
-            const prevButton = document.getElementById('prev-page');
-            const nextButton = document.getElementById('next-page');
-
-            if (current <= 1) {
-                prevButton.classList.add('disabled');
-            } else {
-                prevButton.classList.remove('disabled');
-            }
-
-            if (current >= totalPages) {
-                nextButton.classList.add('disabled');
-            } else {
-                nextButton.classList.remove('disabled');
-            }
-        }
-
-        function loadPage(page) {
-            if (page < 1) return;
-            fetchProducts(page);
-            currentPage = page;
-        }
-
-        // Initial fetch
-        fetchProducts(currentPage);
-    </script>
+        </div>
+    </div>
 </body>
 </html>
