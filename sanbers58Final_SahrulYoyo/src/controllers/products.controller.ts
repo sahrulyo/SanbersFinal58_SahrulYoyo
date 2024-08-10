@@ -91,7 +91,7 @@ export default {
       const result = await ProductsModel.find(query)
       .limit(+limit)
       .skip((+page - 1) *  + limit)
-      .sort({ createAt: -1})
+      .sort({ createdAt: -1})
       .populate('category');
 
       const total = await ProductsModel.countDocuments(query);

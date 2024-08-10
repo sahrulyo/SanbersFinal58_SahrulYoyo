@@ -106,7 +106,7 @@ exports.default = {
                 const result = yield products_model_1.default.find(query)
                     .limit(+limit)
                     .skip((+page - 1) * +limit)
-                    .sort({ createAt: -1 })
+                    .sort({ createdAt: -1 })
                     .populate('category');
                 const total = yield products_model_1.default.countDocuments(query);
                 res.status(200).json({

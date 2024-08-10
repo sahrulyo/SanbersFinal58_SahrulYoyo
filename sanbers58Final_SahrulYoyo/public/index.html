@@ -165,23 +165,33 @@
                 <pre><code>{
     "data": [
         {
-            "_id": "66a5002cefd208399a225540",
-            "name": "Sample Product 5",
-            "description": "Description for sample product 5",
+            "_id": "66a62c255f8cbdab4ec878dc",
+            "name": "X-over 2024 ",
+            "description": "new design 2024 power horse",
             "images": [
-                "image5.jpg"
+                "https://res.cloudinary.com/five-code/image/upload/v1718805645/fxuurm45mt5talry7a29.png",
+                "sepatu2.jpg",
+                "sepatu3.jpg"
             ],
-            "price": 120,
-            "qty": 120,
-            "categoryId": id_category,
-            "dateCreated": "2024-05-01T00:00:00.000Z"
+            "price": 15000000000000000,
+            "qty": 100,
+            "category": {
+                "_id": "66a62b255f8cbdab4ec878da",
+                "name": "SUZUKI",
+                "createdAt": "2024-07-28T11:27:33.652Z",
+                "updatedAt": "2024-07-28T11:27:33.652Z",
+                "__v": 0
+            },
+            "createdAt": "2024-07-28T11:31:49.554Z",
+            "updatedAt": "2024-07-28T11:31:49.554Z",
+            "__v": 0
         }
         .........
     ],
     "message": "Success find all products",
-    "page": 1,
+    "page": 2,
     "limit": 10,
-    "total": 19,
+    "total": 28,
     "totalPages": 2
 }</code></pre>
             </div>
@@ -239,25 +249,41 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Product created successfully",
-  "data": {
-    "id": "product_id",
-    "name": "Product Name",
-    "price": 100,
-    "category": "Category Name",
-    "qty": 50
-  }
+    "data": {
+        "_id": "66b751cf529eb98bd7d40d31",
+        "name": "HONDA CRV 2024",
+        "description": "new design 2024",
+        "images": [
+            "image5.jpg"
+        ],
+        "price": 2000,
+        "qty": 10,
+        "category": {
+            "_id": "66a62b255f8cbdab4ec878da",
+            "name": "SUZUKI",
+            "createdAt": "2024-07-28T11:27:33.652Z",
+            "updatedAt": "2024-07-28T11:27:33.652Z",
+            "__v": 0
+        },
+        "createdAt": "2024-08-10T11:41:03.716Z",
+        "updatedAt": "2024-08-10T11:41:03.716Z",
+        "slug": "honda-crv-2024",
+        "__v": 0
+    },
+    "message": "Success create product"
 }</code></pre>
             </div>
 
             <div class="example">
                 <h4>Example Request</h4>
                 <pre><code>POST /products
-{
-  "name": "Product Name",
-  "price": 100,
-  "category": "Category Name",
-  "qty": 50
+                {
+    "name": "HONDA CRV 2024",
+    "description": "new design 2024",
+    "images":  "image5.jpg",
+    "price": 2000,
+    "qty": 10,
+    "category": "66a62b255f8cbdab4ec878da"
 }</code></pre>
             </div>
 
@@ -330,25 +356,40 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Product updated successfully",
-  "data": {
-    "id": "product_id",
-    "name": "Product Name",
-    "price": 120,
-    "category": "New Category Name",
-    "qty": 40
-  }
+    "data": {
+        "_id": "66b751cf529eb98bd7d40d31",
+        "name": "HONDA CRV 2025",
+        "description": "New Comer",
+        "images": [
+            "image5.jpg"
+        ],
+        "price": 2000,
+        "qty": 30,
+        "category": {
+            "_id": "66a62b255f8cbdab4ec878da",
+            "name": "SUZUKI",
+            "createdAt": "2024-07-28T11:27:33.652Z",
+            "updatedAt": "2024-07-28T11:27:33.652Z",
+            "__v": 0
+        },
+        "createdAt": "2024-08-10T11:41:03.716Z",
+        "updatedAt": "2024-08-10T11:47:00.741Z",
+        "slug": "honda-crv-2024",
+        "__v": 0
+    },
+    "message": "Success update product"
 }</code></pre>
             </div>
 
             <div class="example">
                 <h4>Example Request</h4>
                 <pre><code>PUT /products/12345
-{
-  "name": "Updated Product Name",
-  "price": 120,
-  "category": "New Category Name",
-  "qty": 40
+                {
+    "name": "HONDA CRV 2025",
+    "description": "New Comer",
+    "images":  "image5.jpg",
+    "price": 2000,
+    "qty": 30
 }</code></pre>
             </div>
 
@@ -360,7 +401,21 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Product deleted successfully"
+    "data": {
+        "_id": "66a501a7e4739f3b45b3f776",
+        "name": "Sample Product 8",
+        "description": "Description for sample product 8",
+        "images": [
+            "image8.jpg"
+        ],
+        "price": 90,
+        "qty": 110,
+        "categoryId": null,
+        "createdAt": "2024-07-27T14:18:15.341Z",
+        "updatedAt": "2024-07-27T14:18:15.341Z",
+        "__v": 0
+    },
+    "message": "Success delete product"
 }</code></pre>
             </div>
 
