@@ -99,6 +99,61 @@
         <!-- Products Section -->
         <div class="endpoint">
             <h2>Products</h2>
+            <p>
+            <div>
+    <h2>API Routes Documentation</h2>
+    <h3>Products</h3>
+    <p><b>GET</b> /products - <i>productsController.findAll</i><br>
+       <b>POST</b> /products - <i>productsController.create</i><br>
+       <b>GET</b> /products/:id - <i>productsController.findOne</i><br>
+       <b>PUT</b> /products/:id - <i>productsController.update</i><br>
+       <b>DELETE</b> /products/:id - <i>productsController.delete</i>
+    </p>
+
+    <h3>Uploads</h3>
+    <p><b>POST</b> /upload - <i>uploadController.single</i><br>
+       <b>POST</b> /uploads - <i>uploadController.multiple</i>
+    </p>
+
+    <h3>Categories</h3>
+    <p><b>GET</b> /categories - <i>categoriesController.findAll</i><br>
+       <b>POST</b> /categories - <i>categoriesController.create</i><br>
+       <b>GET</b> /categories/:id - <i>categoriesController.findOne</i><br>
+       <b>PUT</b> /categories/:id - <i>categoriesController.update</i><br>
+       <b>DELETE</b> /categories/:id - <i>categoriesController.delete</i>
+    </p>
+
+    <h3>Auth</h3>
+    <p><b>POST</b> /auth/login - <i>authController.login</i><br>
+       <b>POST</b> /auth/register - <i>authController.register</i><br>
+       <b>POST</b> /register/admin - <i>authController.registerAdmin</i> (Admin only)<br>
+       <b>GET</b> /auth/me - <i>authController.me</i> (Admin & User)<br>
+       <b>PUT</b> /auth/profile - <i>authController.profile</i><br>
+       <b>GET</b> /auth/users - <i>authController.getAll</i> (Admin only)<br>
+       <b>POST</b> /auth/register-admin - <i>authController.registerAdmin</i> (First-time admin registration)
+    </p>
+
+    <h3>Orders</h3>
+    <p><b>POST</b> /order - <i>createOrder</i><br>
+       <b>GET</b> /order/history - <i>getUserOrders</i><br>
+       <b>GET</b> /order/statuses - <i>getOrderStatuses</i>
+    </p>
+
+    <h3>Notifications</h3>
+    <p><b>GET</b> /notifications/:userId - <i>getUserNotifications</i><br>
+       <b>PUT</b> /notifications/:notificationId/read - <i>markNotificationAsRead</i>
+    </p>
+
+    <h3>Cart</h3>
+    <p><b>POST</b> /cart/add - <i>addItemToCart</i><br>
+       <b>DELETE</b> /cart/:productId - <i>removeItemFromCart</i><br>
+       <b>PUT</b> /cart/update - <i>updateCartItemQuantity</i><br>
+       <b>GET</b> /cart - <i>getCart</i><br>
+       <b>DELETE</b> /cart/clear - <i>clearCart</i>
+    </p>
+</div>
+
+            </p>
 
             <h3>Get All Products</h3>
             <p class="method">GET</p>
@@ -1096,7 +1151,7 @@
         ],
         "__v": 2
     }
-}}</code></pre>
+}</code></pre>
             </div>
 
             <div class="example">
