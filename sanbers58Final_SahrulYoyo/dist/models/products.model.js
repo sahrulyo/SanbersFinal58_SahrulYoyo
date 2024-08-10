@@ -56,13 +56,13 @@ const ProductSchema = new mongoose_1.Schema({
     },
     category: {
         type: mongoose_1.default.Schema.Types.ObjectId,
-        ref: "Category", // Pastikan nama model kategori Anda adalah "Category"
+        ref: "Category",
         required: true,
     },
 }, {
     timestamps: true,
 });
-// Middleware untuk membuat slug sebelum menyimpan produk
+// Middleware untuk membuat slug sebelum menyimpan produk ---------------->
 ProductSchema.pre("save", function (next) {
     const product = this;
     if (!product.slug) {
@@ -74,7 +74,7 @@ ProductSchema.pre("save", function (next) {
     }
     next();
 });
-// Membuat model Product
+// Membuat model Product ------------------------------------------>
 const ProductModel = mongoose_1.default.model("Product", ProductSchema);
 exports.default = ProductModel;
 //# sourceMappingURL=products.model.js.map

@@ -94,7 +94,7 @@ const ProductSchema = new Schema<IProduct>(
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category", // Pastikan nama model kategori Anda adalah "Category"
+      ref: "Category", 
       required: true,
     },
   },
@@ -103,7 +103,7 @@ const ProductSchema = new Schema<IProduct>(
   }
 );
 
-// Middleware untuk membuat slug sebelum menyimpan produk
+// Middleware untuk membuat slug sebelum menyimpan produk ---------------->
 ProductSchema.pre("save", function (next) {
   const product = this as IProduct;
   if (!product.slug) {
@@ -116,7 +116,7 @@ ProductSchema.pre("save", function (next) {
   next();
 });
 
-// Membuat model Product
+// Membuat model Product ------------------------------------------>
 const ProductModel = mongoose.model<IProduct>("Product", ProductSchema);
 
 export default ProductModel;

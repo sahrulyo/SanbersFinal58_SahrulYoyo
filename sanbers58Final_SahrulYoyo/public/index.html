@@ -173,7 +173,7 @@
             ],
             "price": 120,
             "qty": 120,
-            "categoryId": pakaian pria dewasa,
+            "categoryId": id_category,
             "dateCreated": "2024-05-01T00:00:00.000Z"
         }
         .........
@@ -381,13 +381,39 @@
 
             <div class="response">
                 <h4>Response</h4>
-                <pre><code>[
-  {
-    "id": "category_id",
-    "name": "Category Name"
-  },
-  ...
-]</code></pre>
+                <pre><code>{
+    "data": [
+        {
+            "_id": "66a60840f372597f1f2f2101",
+            "name": "Kemeja dengan Kategori",
+            "createdAt": "2024-07-28T08:58:40.315Z",
+            "updatedAt": "2024-07-28T08:58:40.315Z",
+            "__v": 0
+        },
+        {
+            "_id": "66a623675f8cbdab4ec878d5",
+            "name": "Iphone",
+            "createdAt": "2024-07-28T10:54:31.824Z",
+            "updatedAt": "2024-07-28T10:54:31.824Z",
+            "__v": 0
+        },
+        {
+            "_id": "66a62b255f8cbdab4ec878da",
+            "name": "SUZUKI",
+            "createdAt": "2024-07-28T11:27:33.652Z",
+            "updatedAt": "2024-07-28T11:27:33.652Z",
+            "__v": 0
+        },
+        {
+            "_id": "66a6359e0e9a0deb73ef9d44",
+            "name": "HONDA",
+            "createdAt": "2024-07-28T12:12:14.874Z",
+            "updatedAt": "2024-07-28T12:12:14.874Z",
+            "__v": 0
+        }
+    ],
+    "message": "Success get all products"
+}</code></pre>
             </div>
 
             <div class="example">
@@ -425,11 +451,14 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Category created successfully",
-  "data": {
-    "id": "category_id",
-    "name": "Category Name"
-  }
+    "data": {
+        "name": "VEGETABLES",
+        "_id": "66b73404e994859d88a473a0",
+        "createdAt": "2024-08-10T09:33:56.685Z",
+        "updatedAt": "2024-08-10T09:33:56.685Z",
+        "__v": 0
+    },
+    "message": "Success create product"
 }</code></pre>
             </div>
 
@@ -437,7 +466,7 @@
                 <h4>Example Request</h4>
                 <pre><code>POST /categories
 {
-  "name": "Category Name"
+  "name": "VEGETABLES"
 }</code></pre>
             </div>
 
@@ -489,11 +518,14 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Category updated successfully",
-  "data": {
-    "id": "category_id",
-    "name": "Updated Category Name"
-  }
+    "data": {
+        "_id": "66b73404e994859d88a473a0",
+        "name": "VEGETABLES UENAK",
+        "createdAt": "2024-08-10T09:33:56.685Z",
+        "updatedAt": "2024-08-10T09:42:20.189Z",
+        "__v": 0
+    },
+    "message": "Success update category"
 }</code></pre>
             </div>
 
@@ -501,7 +533,7 @@
                 <h4>Example Request</h4>
                 <pre><code>PUT /categories/12345
 {
-  "name": "Updated Category Name"
+  "name": "VEGETABLES UENAK"
 }</code></pre>
             </div>
 
@@ -513,7 +545,14 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Category deleted successfully"
+    "data": {
+        "_id": "66a60840f372597f1f2f2101",
+        "name": "Kemeja dengan Kategori",
+        "createdAt": "2024-07-28T08:58:40.315Z",
+        "updatedAt": "2024-07-28T08:58:40.315Z",
+        "__v": 0
+    },
+    "message": "Success delete category product"
 }</code></pre>
             </div>
 
@@ -574,7 +613,7 @@
                 {
 
 "email": "sundaneseaddict@gmail.com",
-"password": "Ulyasar10389#"
+"password": "password"
 
 }</code></pre>
             </div>
@@ -632,7 +671,8 @@
 
             <div class="example">
                 <h4>Example Request</h4>
-                <pre><code>POST /auth/register
+                <h6>POST /auth/register</h6>
+                <pre><code>
                 {
   "fullName": "Sunda People",
   "username": "sunda_people",
@@ -650,9 +690,18 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "id": "user_id",
-  "email": "user@example.com",
-  "role": "user"
+    "message": "User details",
+    "data": {
+        "_id": "66b6f23cedf7fc9391da1698",
+        "fullName": "Sunda People",
+        "username": "sunda_people",
+        "email": "sundaneseaddict@gmail.com",
+        "role": "user",
+        "profilePicture": "default.jpg",
+        "createdAt": "2024-08-10T04:53:16.948Z",
+        "updatedAt": "2024-08-10T04:53:16.948Z",
+        "__v": 0
+    }
 }</code></pre>
             </div>
 
@@ -697,12 +746,18 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Profile updated successfully",
-  "user": {
-    "id": "user_id",
-    "email": "updated@example.com",
-    "role": "user"
-  }
+    "message": "Profile updated successfully",
+    "data": {
+        "_id": "66b19e65b75980aaa2e81456",
+        "fullName": "Creative Designer MD",
+        "username": "creative_designer",
+        "email": "creativedesigner.md@gmail.com",
+        "role": "admin",
+        "profilePicture": "default.jpg",
+        "createdAt": "2024-08-06T03:54:13.525Z",
+        "updatedAt": "2024-08-10T10:17:57.906Z",
+        "__v": 0
+    }
 }</code></pre>
             </div>
 
@@ -722,14 +777,231 @@
 
             <div class="response">
                 <h4>Response</h4>
-                <pre><code>[
-  {
-    "id": "user_id",
-    "email": "user@example.com",
-    "role": "user"
-  },
-  ...
-]</code></pre>
+                <pre><code>{
+    "message": "All users retrieved successfully",
+    "data": [
+        {
+            "_id": "66ab9e090776766ff61fe2fd",
+            "fullName": "Sahrul Yoyo",
+            "username": "sahrul_yoyo",
+            "email": "admin@toko.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-01T14:39:05.025Z",
+            "updatedAt": "2024-08-01T14:39:05.025Z",
+            "__v": 0
+        },
+        {
+            "_id": "66aba62f978bc445c268c56d",
+            "fullName": "Burhan Udin",
+            "username": "Hello_yoyo",
+            "email": "yoyo@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-01T15:13:51.418Z",
+            "updatedAt": "2024-08-01T16:07:38.241Z",
+            "__v": 0
+        },
+        {
+            "_id": "66aba9e44a3f54294b162d4f",
+            "fullName": "Hello Me",
+            "username": "Hello_me",
+            "email": "me@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-01T15:29:40.461Z",
+            "updatedAt": "2024-08-01T15:29:40.461Z",
+            "__v": 0
+        },
+        {
+            "_id": "66abaa874a3f54294b162d56",
+            "fullName": "Burhan Udin",
+            "username": "burhan_udin",
+            "email": "burhan@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-01T15:32:23.243Z",
+            "updatedAt": "2024-08-01T15:34:26.076Z",
+            "__v": 0
+        },
+        {
+            "_id": "66abb316a49d04aba1b03084",
+            "fullName": "Yoko Yo",
+            "username": "yoko_yo",
+            "email": "yoko@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-01T16:08:54.018Z",
+            "updatedAt": "2024-08-01T16:08:54.018Z",
+            "__v": 0
+        },
+        {
+            "_id": "66ad0bb17713c248326230e7",
+            "fullName": "Momon Kentang",
+            "username": "momonkentang",
+            "email": "momon@mail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-02T16:39:13.373Z",
+            "updatedAt": "2024-08-02T16:39:13.373Z",
+            "__v": 0
+        },
+        {
+            "_id": "66ad0d087713c248326230ea",
+            "fullName": "Burhan Udin",
+            "username": "Ulya_Sari",
+            "email": "ully@mail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-02T16:44:56.452Z",
+            "updatedAt": "2024-08-02T16:46:39.804Z",
+            "__v": 0
+        },
+        {
+            "_id": "66ad0dd87713c248326230f0",
+            "fullName": "Burhan Udin",
+            "username": "yo_sah",
+            "email": "yoyo.ptr@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-02T16:48:24.147Z",
+            "updatedAt": "2024-08-05T12:40:56.587Z",
+            "__v": 0
+        },
+        {
+            "_id": "66ad0f987713c248326230f9",
+            "fullName": "Burhan Udin",
+            "username": "gogo",
+            "email": "go@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-02T16:55:52.869Z",
+            "updatedAt": "2024-08-02T17:24:26.205Z",
+            "__v": 0
+        },
+        {
+            "_id": "66ad1696fe01d260ec96f064",
+            "fullName": "Burhan Udin",
+            "username": "bobo",
+            "email": "bo@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-02T17:25:42.281Z",
+            "updatedAt": "2024-08-02T17:26:24.729Z",
+            "__v": 0
+        },
+        {
+            "_id": "66ad6f4b399f219687dc6542",
+            "fullName": "Burhan Udin",
+            "username": "meme",
+            "email": "meme@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-02T23:44:11.398Z",
+            "updatedAt": "2024-08-03T04:02:39.710Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b0c84d0b4b3763f583eb1d",
+            "fullName": "Burhan Udin",
+            "username": "web_dev",
+            "email": "webdev@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-05T12:40:45.678Z",
+            "updatedAt": "2024-08-05T12:42:16.000Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b0ca4c1f1b50d10a6be3f1",
+            "fullName": "Admin Tertinggi",
+            "username": "admin_user",
+            "email": "admin@example.com",
+            "role": "admin",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-05T12:49:16.621Z",
+            "updatedAt": "2024-08-05T13:52:49.661Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b19e65b75980aaa2e81456",
+            "fullName": "Creative Designer",
+            "username": "creative_designer",
+            "email": "creativedesigner.md@gmail.com",
+            "role": "admin",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-06T03:54:13.525Z",
+            "updatedAt": "2024-08-06T03:54:13.525Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b251872bc1449c5dc12784",
+            "fullName": "web dev",
+            "username": "web_dev",
+            "email": "devw2656@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-06T16:38:31.570Z",
+            "updatedAt": "2024-08-06T16:38:31.570Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b4b3d318e010d09389a401",
+            "fullName": "Vue Programmer",
+            "username": "Vue_Programmer",
+            "email": "programmervue@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-08T12:02:27.199Z",
+            "updatedAt": "2024-08-08T12:02:27.199Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b4bbe418e010d09389a409",
+            "fullName": "Ghu Rho",
+            "username": "Ghu_Ro",
+            "email": "ghuroba895@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-08T12:36:52.303Z",
+            "updatedAt": "2024-08-08T12:36:52.303Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b4d568e5485d2348318e18",
+            "fullName": "rabaniansId",
+            "username": "raba_nian",
+            "email": "idrabbanians@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-08T14:25:44.696Z",
+            "updatedAt": "2024-08-08T14:25:44.696Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b4e6dcff478f291529b87f",
+            "fullName": "gain nutri",
+            "username": "gain",
+            "email": "gainnutri.smtp@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-08T15:40:12.673Z",
+            "updatedAt": "2024-08-08T15:40:12.673Z",
+            "__v": 0
+        },
+        {
+            "_id": "66b6f23cedf7fc9391da1698",
+            "fullName": "Sunda People",
+            "username": "sunda_people",
+            "email": "sundaneseaddict@gmail.com",
+            "role": "user",
+            "profilePicture": "default.jpg",
+            "createdAt": "2024-08-10T04:53:16.948Z",
+            "updatedAt": "2024-08-10T04:53:16.948Z",
+            "__v": 0
+        }
+    ]
+}</code></pre>
             </div>
 
             <div class="example">
