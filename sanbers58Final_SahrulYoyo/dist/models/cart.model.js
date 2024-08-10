@@ -24,15 +24,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
+// Skema untuk item di dalam keranjang -------------------------------->
+const CartItemSchema = new mongoose_1.Schema({
+    productId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Product', required: true },
+    quantity: { type: Number, required: true }
+});
+// Skema untuk keranjang belanja --------------------------------------->
 const CartSchema = new mongoose_1.Schema({
-    userId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
+    userId: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'User', required: true },
     items: [
         {
-            productId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Product', required: true },
+            productId: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Product', required: true },
             quantity: { type: Number, required: true }
         }
     ]
 });
+// Model keranjang belanja --------------------------------------------->
 const CartModel = mongoose_1.default.model('Cart', CartSchema);
 exports.default = CartModel;
 //# sourceMappingURL=cart.model.js.map

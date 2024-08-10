@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Documentation - E-commerce_Sahrul Yoyo Sanbers Batch 58</title>
+    <title>API Documentation </title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,6 +42,7 @@
         .endpoint {
             margin: 20px 0;
         }
+
 
         .method {
             font-weight: bold;
@@ -93,7 +94,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>API Documentation</h1>
+        <h1>E-commerce API Documentation<br>Sahrul Yoyo Sanbers Batch 58</h1>
 
         <!-- Products Section -->
         <div class="endpoint">
@@ -106,16 +107,28 @@
 
             <div class="response">
                 <h4>Response</h4>
-                <pre><code>[
-  {
-    "id": "product_id",
-    "name": "Product Name",
-    "price": 100,
-    "category": "Category Name",
-    "qty": 50
-  },
-  ...
-]</code></pre>
+                <pre><code>{
+    "data": [
+        {
+            "_id": "66a5002cefd208399a225540",
+            "name": "Sample Product 5",
+            "description": "Description for sample product 5",
+            "images": [
+                "image5.jpg"
+            ],
+            "price": 120,
+            "qty": 120,
+            "categoryId": pakaian pria dewasa,
+            "dateCreated": "2024-05-01T00:00:00.000Z"
+        }
+        .........
+    ],
+    "message": "Success find all products",
+    "page": 1,
+    "limit": 10,
+    "total": 19,
+    "totalPages": 2
+}</code></pre>
             </div>
 
             <div class="example">
@@ -495,21 +508,19 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "token": "jwt_token",
-  "user": {
-    "id": "user_id",
-    "email": "user@example.com",
-    "role": "user"
-  }
+    "message": "User logged in successfully",
+    "data": "user_token"
 }</code></pre>
             </div>
 
             <div class="example">
                 <h4>Example Request</h4>
                 <pre><code>POST /auth/login
-{
-  "email": "user@example.com",
-  "password": "yourpassword"
+                {
+
+"email": "sundaneseaddict@gmail.com",
+"password": "Ulyasar10389#"
+
 }</code></pre>
             </div>
 
@@ -549,21 +560,30 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "User registered successfully",
-  "user": {
-    "id": "user_id",
-    "email": "user@example.com",
-    "role": "user"
-  }
+    "message": "User registered successfully",
+    "data": {
+        "fullName": "Sunda People",
+        "username": "sunda_people",
+        "email": "sundaneseaddict@gmail.com",
+        "role": "user",
+        "profilePicture": "default.jpg",
+        "_id": "66b6f23cedf7fc9391da1698",
+        "createdAt": "2024-08-10T04:53:16.948Z",
+        "updatedAt": "2024-08-10T04:53:16.948Z",
+        "__v": 0
+    }
 }</code></pre>
             </div>
 
             <div class="example">
                 <h4>Example Request</h4>
                 <pre><code>POST /auth/register
-{
-  "email": "user@example.com",
-  "password": "yourpassword"
+                {
+  "fullName": "Sunda People",
+  "username": "sunda_people",
+  "email": "sundaneseaddict@gmail.com",
+  "password": "Ulyasar10389#",
+  "role": "user"
 }</code></pre>
             </div>
 
@@ -703,32 +723,43 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Order created successfully",
-  "order": {
-    "id": "order_id",
-    "items": [
-      {
-        "product_id": "product_id",
-        "quantity": 2
-      }
-    ],
-    "total": 200
-  }
+    "message": "Order created successfully",
+    "data": {
+        "grandTotal": 15000000000000000,
+        "orderItems": [
+            {
+                "name": "HONDA CIVIC 2024",
+                "productId": "66a635d20e9a0deb73ef9d47",
+                "price": 15000000000000000,
+                "quantity": 1,
+                "_id": "66b6f3d9edf7fc9391da169e"
+            }
+        ],
+        "createdBy": "66b6f23cedf7fc9391da1698",
+        "status": "pending",
+        "_id": "66b6f3d9edf7fc9391da169d",
+        "createdAt": "2024-08-10T05:00:09.491Z",
+        "updatedAt": "2024-08-10T05:00:09.491Z",
+        "__v": 0
+    }
 }</code></pre>
             </div>
 
             <div class="example">
                 <h4>Example Request</h4>
                 <pre><code>POST /order
-{
-  "items": [
+                {
+  "grandTotal": 15000000000000000,
+  "orderItems": [
     {
-      "product_id": "product_id",
-      "quantity": 2
+      "name": "HONDA CIVIC 2024",
+      "productId": "66a635d20e9a0deb73ef9d47",
+      "price": 15000000000000000,
+      "quantity": 1
     }
-  ],
-  "total": 200
-}</code></pre>
+  ]
+}
+</code></pre>
             </div>
 
             <h3>Get Order History</h3>
@@ -738,19 +769,30 @@
 
             <div class="response">
                 <h4>Response</h4>
-                <pre><code>[
-  {
-    "id": "order_id",
-    "items": [
-      {
-        "product_id": "product_id",
-        "quantity": 2
-      }
+                <pre><code>{
+    "data": [
+        {
+            "_id": "66b6f3d9edf7fc9391da169d",
+            "grandTotal": 15000000000000000,
+            "orderItems": [
+                {
+                    "name": "HONDA CIVIC 2024",
+                    "productId": "66a635d20e9a0deb73ef9d47",
+                    "price": 15000000000000000,
+                    "quantity": 1,
+                    "_id": "66b6f3d9edf7fc9391da169e"
+                }
+            ],
+            "createdBy": "66b6f23cedf7fc9391da1698",
+            "status": "pending",
+            "createdAt": "2024-08-10T05:00:09.491Z",
+            "updatedAt": "2024-08-10T05:00:09.491Z",
+            "__v": 0
+        }
     ],
-    "total": 200
-  },
-  ...
-]</code></pre>
+    "totalPages": 1,
+    "currentPage": 1
+}</code></pre>
             </div>
 
             <div class="example">
@@ -791,14 +833,19 @@
 
             <div class="response">
                 <h4>Response</h4>
-                <pre><code>[
-  {
-    "id": "notification_id",
-    "message": "You have a new message",
-    "read": false
-  },
-  ...
-]</code></pre>
+                <pre><code>{
+    "data": [
+        {
+            "_id": "66b6f3d9edf7fc9391da16a1",
+            "userId": "66b6f23cedf7fc9391da1698",
+            "message": "Your order has been placed successfully and is pending.",
+            "type": "order-status",
+            "status": "unread",
+            "createdAt": "2024-08-10T05:00:09.521Z",
+            "__v": 0
+        }
+    ]
+}</code></pre>
             </div>
 
             <div class="example">
@@ -814,7 +861,16 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Notification marked as read"
+    "message": "Notification marked as read",
+    "data": {
+        "_id": "66b6f3d9edf7fc9391da16a1",
+        "userId": "66b6f23cedf7fc9391da1698",
+        "message": "Your order has been placed successfully and is pending.",
+        "type": "order-status",
+        "status": "read",
+        "createdAt": "2024-08-10T05:00:09.521Z",
+        "__v": 0
+    }
 }</code></pre>
             </div>
 
@@ -864,25 +920,29 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Item added to cart",
-  "cart": {
-    "items": [
-      {
-        "product_id": "product_id",
-        "quantity": 2
-      }
-    ],
-    "total": 200
-  }
+    "message": "Item added to cart",
+    "data": {
+        "userId": "66b6f23cedf7fc9391da1698",
+        "items": [
+            {
+                "productId": "66a635d20e9a0deb73ef9d47",
+                "quantity": 12,
+                "_id": "66b6fd50edf7fc9391da16ab"
+            }
+        ],
+        "_id": "66b6fd50edf7fc9391da16aa",
+        "__v": 0
+    }
 }</code></pre>
             </div>
 
             <div class="example">
                 <h4>Example Request</h4>
                 <pre><code>POST /cart/add
-{
-  "product_id": "product_id",
-  "quantity": 2
+                {
+  "_id": "66b4e6dcff478f291529b87f",
+  "productId": "66a635d20e9a0deb73ef9d47",
+  "quantity": 12
 }</code></pre>
             </div>
 
@@ -894,11 +954,42 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Item removed from cart",
-  "cart": {
-    "items": [],
-    "total": 0
-  }
+    "message": "Item removed from cart",
+    "data": {
+        "_id": "66b6fd50edf7fc9391da16aa",
+        "userId": "66b6f23cedf7fc9391da1698",
+        "items": [],
+        "__v": 1
+    }
+}</code></pre>
+            </div>
+
+            <div class="example">
+                <h4>Example Request</h4>
+                <pre><code>DELETE /cart/product_id</code></pre>
+            </div>
+
+            <h3>Clear Cart</h3>
+            <p class="method">DELETE</p>
+            <p class="url">/cart/clear</p>
+            <p class="description">Clear Cart.</p>
+
+            <div class="response">
+                <h4>Response</h4>
+                <pre><code>{
+    "message": "Item removed from cart",
+    "data": {
+        "_id": "66b6fd50edf7fc9391da16aa",
+        "userId": "66b6f23cedf7fc9391da1698",
+        "items": [
+            {
+                "productId": "66a635d20e9a0deb73ef9d47",
+                "quantity": 30,
+                "_id": "66b70823edf7fc9391da16bb"
+            }
+        ],
+        "__v": 2
+    }
 }</code></pre>
             </div>
 
@@ -943,25 +1034,29 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "message": "Cart updated",
-  "cart": {
-    "items": [
-      {
-        "product_id": "product_id",
-        "quantity": 3
-      }
-    ],
-    "total": 300
-  }
+    "message": "Cart item updated",
+    "data": {
+        "_id": "66b6fd50edf7fc9391da16aa",
+        "userId": "66b6f23cedf7fc9391da1698",
+        "items": [
+            {
+                "productId": "66a635d20e9a0deb73ef9d47",
+                "quantity": 5,
+                "_id": "66b6fd50edf7fc9391da16ab"
+            }
+        ],
+        "__v": 0
+    }
 }</code></pre>
             </div>
 
             <div class="example">
                 <h4>Example Request</h4>
                 <pre><code>PUT /cart/update
-{
-  "product_id": "product_id",
-  "quantity": 3
+                {
+  "_id": "66b4e6dcff478f291529b87f",
+  "productId": "66a635d20e9a0deb73ef9d47",
+  "quantity": 5
 }</code></pre>
             </div>
 
@@ -973,16 +1068,35 @@
             <div class="response">
                 <h4>Response</h4>
                 <pre><code>{
-  "cart": {
-    "items": [
-      {
-        "product_id": "product_id",
-        "quantity": 3
-      }
-    ],
-    "total": 300
-  }
-}</code></pre>
+    "data": {
+        "_id": "66b6fd50edf7fc9391da16aa",
+        "userId": "66b6f23cedf7fc9391da1698",
+        "items": [
+            {
+                "productId": {
+                    "_id": "66a635d20e9a0deb73ef9d47",
+                    "name": "HONDA CIVIC 2024 ",
+                    "description": "new design 2024 ",
+                    "images": [
+                        "https://res.cloudinary.com/five-code/image/upload/v1718805645/fxuurm45mt5talry7a29.png",
+                        "sepatu2.jpg",
+                        "sepatu3.jpg"
+                    ],
+                    "price": 15000000000000000,
+                    "qty": 57,
+                    "category": "66a6359e0e9a0deb73ef9d44",
+                    "createdAt": "2024-07-28T12:13:06.783Z",
+                    "updatedAt": "2024-08-10T05:00:09.460Z",
+                    "__v": 0,
+                    "slug": "honda-civic-2024-"
+                },
+                "quantity": 30,
+                "_id": "66b70823edf7fc9391da16bb"
+            }
+        ],
+        "__v": 2
+    }
+}}</code></pre>
             </div>
 
             <div class="example">
@@ -995,5 +1109,8 @@
 
         </div>
     </div>
+    <div class="footer">
+      <p>&copy; 2024 E-commerce API Documentation - Sahrul Yoyo Sanbers Batch 58</p>
+  </div>
 </body>
 </html>

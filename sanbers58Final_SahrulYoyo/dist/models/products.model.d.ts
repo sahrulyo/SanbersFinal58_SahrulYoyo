@@ -23,79 +23,18 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 /// <reference types="mongoose/types/inferrawdoctype" />
-import mongoose from "mongoose";
-declare const ProductsModel: mongoose.Model<{
-    createdAt: NativeDate;
-    updatedAt: NativeDate;
-} & {
+import mongoose, { Document } from "mongoose";
+export interface IProduct extends Document {
     name: string;
     description: string;
     images: string[];
     price: number;
     qty: number;
-    slug?: string | null | undefined;
-    category?: mongoose.Types.ObjectId | null | undefined;
-}, {}, {}, {}, mongoose.Document<unknown, {}, {
-    createdAt: NativeDate;
-    updatedAt: NativeDate;
-} & {
-    name: string;
-    description: string;
-    images: string[];
-    price: number;
-    qty: number;
-    slug?: string | null | undefined;
-    category?: mongoose.Types.ObjectId | null | undefined;
-}> & {
-    createdAt: NativeDate;
-    updatedAt: NativeDate;
-} & {
-    name: string;
-    description: string;
-    images: string[];
-    price: number;
-    qty: number;
-    slug?: string | null | undefined;
-    category?: mongoose.Types.ObjectId | null | undefined;
-} & {
-    _id: mongoose.Types.ObjectId;
-}, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, {
-    timestamps: true;
-}, {
-    createdAt: NativeDate;
-    updatedAt: NativeDate;
-} & {
-    name: string;
-    description: string;
-    images: string[];
-    price: number;
-    qty: number;
-    slug?: string | null | undefined;
-    category?: mongoose.Types.ObjectId | null | undefined;
-}, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
-    createdAt: NativeDate;
-    updatedAt: NativeDate;
-} & {
-    name: string;
-    description: string;
-    images: string[];
-    price: number;
-    qty: number;
-    slug?: string | null | undefined;
-    category?: mongoose.Types.ObjectId | null | undefined;
-}>> & mongoose.FlatRecord<{
-    createdAt: NativeDate;
-    updatedAt: NativeDate;
-} & {
-    name: string;
-    description: string;
-    images: string[];
-    price: number;
-    qty: number;
-    slug?: string | null | undefined;
-    category?: mongoose.Types.ObjectId | null | undefined;
-}> & {
-    _id: mongoose.Types.ObjectId;
-}>>;
-export default ProductsModel;
+    slug: string;
+    category: mongoose.Schema.Types.ObjectId;
+}
+declare const ProductModel: mongoose.Model<IProduct, {}, {}, {}, mongoose.Document<unknown, {}, IProduct> & IProduct & Required<{
+    _id: unknown;
+}>, any>;
+export default ProductModel;
 //# sourceMappingURL=products.model.d.ts.map

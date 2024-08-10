@@ -23,13 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 /// <reference types="mongoose/types/inferrawdoctype" />
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Document, Types } from 'mongoose';
 export interface ICartItem {
-    productId: Schema.Types.ObjectId;
+    productId: Types.ObjectId;
     quantity: number;
 }
 export interface ICart extends Document {
-    userId: Schema.Types.ObjectId;
+    userId: Types.ObjectId;
     items: ICartItem[];
 }
 declare const CartModel: mongoose.Model<ICart, {}, {}, {}, mongoose.Document<unknown, {}, ICart> & ICart & Required<{
